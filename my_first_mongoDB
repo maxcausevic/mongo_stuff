@@ -1,0 +1,123 @@
+my_first_mongoDB
+
+> db.createCollection(MONGO_INTRO)
+uncaught exception: ReferenceError: MONGO_INTRO is not defined :
+@(shell):1:1
+> db.createCollection("MONGO_INTRO")
+{ "ok" : 1 }
+> db.dropDatabase()
+{ "dropped" : "test", "ok" : 1 }
+> use 'my_first_db'
+switched to db 'my_first_db'
+> db.createCollection("STUDENTS_COLLECTION")
+{ "ok" : 1 }
+> db.STUDENTS_COLLECTION.insert({name: "Maxine", home_state:"Illinois", lucky_number:7, birthday:{month:12, day:6, year:1987}}) 
+WriteResult({ "nInserted" : 1 })
+> db.STUDENTS_COLLECTION.insert({name: "Allen", home_state:"Illinois", lucky_number:7, birthday:{month:8, day:21, year:1984}})
+WriteResult({ "nInserted" : 1 })
+> db.STUDENTS_COLLECTION.find({name: "Maxine"})
+{ "_id" : ObjectId("609ea0370d9cf672533068d1"), "name" : "Maxine", "home_state" : "Illinois", "lucky_number" : 7, "birthday" : { "month" : 12, "day" : 6, "year" : 1987 } }
+> db.STUDENTS_COLLECTION.insert({name: "Cam", home_state:"New York", lucky_number:10, birthday:{month:11, day:10, year:1932}})
+WriteResult({ "nInserted" : 1 })
+> db.STUDENTS_COLLECTION.insert({name: "Arlene", home_state:"Iowa", lucky_number:20, birthday:{month:3, day:20, year:1935}})
+WriteResult({ "nInserted" : 1 })
+> db.STUDENTS_COLLECTION.insert({name: "Mia", home_state:"Illinois", lucky_number:1, birthday:{month:5, day:5, year:2020}})
+WriteResult({ "nInserted" : 1 })
+> db.STUDENTS_COLLECTION.find()
+{ "_id" : ObjectId("609ea0370d9cf672533068d1"), "name" : "Maxine", "home_state" : "Illinois", "lucky_number" : 7, "birthday" : { "month" : 12, "day" : 6, "year" : 1987 } }
+{ "_id" : ObjectId("609ea0680d9cf672533068d2"), "name" : "Allen", "home_state" : "Illinois", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 21, "year" : 1984 } }
+{ "_id" : ObjectId("609ea0f80d9cf672533068d3"), "name" : "Cam", "home_state" : "New York", "lucky_number" : 10, "birthday" : { "month" : 11, "day" : 10, "year" : 1932 } }
+{ "_id" : ObjectId("609ea11a0d9cf672533068d4"), "name" : "Arlene", "home_state" : "Iowa", "lucky_number" : 20, "birthday" : { "month" : 3, "day" : 20, "year" : 1935 } }
+{ "_id" : ObjectId("609ea1390d9cf672533068d5"), "name" : "Mia", "home_state" : "Illinois", "lucky_number" : 1, "birthday" : { "month" : 5, "day" : 5, "year" : 2020 } }
+> db.STUDENTS_COLLECTION.find({home_state: "California"})
+> db.STUDENTS_COLLECTION.find({home_state: "Washington"})
+> db.STUDENTS_COLLECTION.find({lucky_number: {$gt: 3}}).pretty()
+{
+	"_id" : ObjectId("609ea0370d9cf672533068d1"),
+	"name" : "Maxine",
+	"home_state" : "Illinois",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 12,
+		"day" : 6,
+		"year" : 1987
+	}
+}
+{
+	"_id" : ObjectId("609ea0680d9cf672533068d2"),
+	"name" : "Allen",
+	"home_state" : "Illinois",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 8,
+		"day" : 21,
+		"year" : 1984
+	}
+}
+{
+	"_id" : ObjectId("609ea0f80d9cf672533068d3"),
+	"name" : "Cam",
+	"home_state" : "New York",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 11,
+		"day" : 10,
+		"year" : 1932
+	}
+}
+{
+	"_id" : ObjectId("609ea11a0d9cf672533068d4"),
+	"name" : "Arlene",
+	"home_state" : "Iowa",
+	"lucky_number" : 20,
+	"birthday" : {
+		"month" : 3,
+		"day" : 20,
+		"year" : 1935
+	}
+}
+> db.STUDENTS_COLLECTION.find({lucky_number: {$lte: 10}}).pretty()
+{
+	"_id" : ObjectId("609ea0370d9cf672533068d1"),
+	"name" : "Maxine",
+	"home_state" : "Illinois",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 12,
+		"day" : 6,
+		"year" : 1987
+	}
+}
+{
+	"_id" : ObjectId("609ea0680d9cf672533068d2"),
+	"name" : "Allen",
+	"home_state" : "Illinois",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 8,
+		"day" : 21,
+		"year" : 1984
+	}
+}
+{
+	"_id" : ObjectId("609ea0f80d9cf672533068d3"),
+	"name" : "Cam",
+	"home_state" : "New York",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 11,
+		"day" : 10,
+		"year" : 1932
+	}
+}
+{
+	"_id" : ObjectId("609ea1390d9cf672533068d5"),
+	"name" : "Mia",
+	"home_state" : "Illinois",
+	"lucky_number" : 1,
+	"birthday" : {
+		"month" : 5,
+		"day" : 5,
+		"year" : 2020
+	}
+}
